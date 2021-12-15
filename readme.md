@@ -2,7 +2,11 @@
 
 > Utility functions for Web Extensions
 
-Tested in Chrome, Firefox, and Safari.
+- Browsers: Chrome, Firefox, and Safari
+- Manifest: v2 and v3
+- Permissions: In manifest v3, you'll need the `scripting` permission
+- Context: They can be called from any context that has access to the `chrome.tabs` or `chrome.scripting` APIs
+
 
 ## Install
 
@@ -77,6 +81,7 @@ if (access) {
 
 ## Related
 
+- [webext-content-scripts](https://github.com/fregante/webext-content-scripts) - Utility functions to inject content scripts in WebExtensions.
 - [webext-base-css](https://github.com/fregante/webext-base-css) - Extremely minimal stylesheet/setup for Web Extensions’ options pages (also dark mode)
 - [webext-options-sync](https://github.com/fregante/webext-options-sync) - Helps you manage and autosave your extension's options.
 - [webext-detect-page](https://github.com/fregante/webext-detect-page) - Detects where the current browser extension code is being run.

@@ -18,7 +18,7 @@ export async function getTabUrl(
 ): Promise<string | void> {
 	const {frameId, tabId} = castTarget(target);
 	try {
-		if (frameId === 0) {
+		if (frameId === 0 && 'tabs' in globalThis.chrome) {
 			const tab = await chromeP.tabs.get(tabId);
 			if (tab.url) {
 				return tab.url;
