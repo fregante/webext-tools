@@ -7,6 +7,7 @@
 - Permissions: In manifest v3, you'll need the `scripting` permission
 - Context: They can be called from any context that has access to the `chrome.tabs` or `chrome.scripting` APIs
 
+**Sponsored by [PixieBrix](https://www.pixiebrix.com)** :tada:
 
 ## Install
 
