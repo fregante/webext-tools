@@ -37,15 +37,15 @@
 		]
 	},
 	"dependencies": {
-		"webext-content-scripts": "^0.12.0",
-		"webext-detect-page": "^4.0.0",
-		"webext-polyfill-kinda": "^0.9.0"
+		"webext-content-scripts": "^1.0.1",
+		"webext-detect-page": "^4.0.1",
+		"webext-polyfill-kinda": "^0.10.0"
 	},
 	"devDependencies": {
-		"@sindresorhus/tsconfig": "^2.0.0",
-		"@types/chrome": "^0.0.171",
-		"@types/webextension-polyfill": "^0.8.2",
-		"typescript": "^4.5.4",
-		"xo": "^0.47.0"
+		"@sindresorhus/tsconfig": "^3.0.1",
+		"@types/chrome": "^0.0.188",
+		"@types/webextension-polyfill": "^0.8.3",
+		"typescript": "^4.7.2",
+		"xo": "^0.49.0"
 	}
 }
