@@ -80,6 +80,7 @@ if (access) {
 }
 ```
 
+
 ### `doesTabExist(tabId)`
 
 Checks whether the tab exists.
