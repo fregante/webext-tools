@@ -80,6 +80,18 @@ if (access) {
 }
 ```
 
+### `doesTabExist(tabId)`
+
+Checks whether the tab exists.
+
+```js
+const tabId = 42;
+const tabExists = await doesTabExist(tabId);
+if (tabExists) {
+	chrome.tabs.remove(tabExists);
+}
+```
+
 ## Related
 
 - [webext-content-scripts](https://github.com/fregante/webext-content-scripts) - Utility functions to inject content scripts in WebExtensions.
