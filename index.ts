@@ -1,10 +1,10 @@
 import chromeP from 'webext-polyfill-kinda';
 import {executeFunction} from 'webext-content-scripts';
 
-export interface Target {
+export type Target = {
 	tabId: number;
 	frameId: number;
-}
+};
 
 export function castTarget(target: number | Target): Target {
 	return typeof target === 'object' ? target : {
