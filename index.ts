@@ -15,7 +15,7 @@ export function castTarget(target: number | Target): Target {
 
 export async function getTabUrl(
 	target: number | Target,
-): Promise<string | void> {
+): Promise<string | undefined> {
 	const {frameId, tabId} = castTarget(target);
 	try {
 		if (frameId === 0 && 'tabs' in globalThis.chrome) {
@@ -28,6 +28,7 @@ export async function getTabUrl(
 		return await executeFunction(target, () => location.href);
 	} catch {
 		// No host permissions
+		return undefined;
 	}
 }
 
