@@ -37,15 +37,15 @@
 		]
 	},
 	"dependencies": {
-		"webext-content-scripts": "^1.0.3",
+		"webext-content-scripts": "^2.4.0",
 		"webext-detect-page": "^4.0.1",
 		"webext-polyfill-kinda": "^0.10.0"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^3.0.1",
-		"@types/chrome": "^0.0.199",
-		"@types/webextension-polyfill": "^0.9.1",
-		"typescript": "^4.8.4",
-		"xo": "^0.52.4"
+		"@types/chrome": "^0.0.208",
+		"@types/webextension-polyfill": "^0.10.0",
+		"typescript": "^4.9.4",
+		"xo": "^0.53.1"
 	}
 }
