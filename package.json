@@ -19,7 +19,7 @@
 	"author": "Federico Brigante <me@fregante.com> (https://fregante.com)",
 	"type": "module",
 	"exports": "./index.js",
-	"module": "index.js",
+	"types": "./index.d.ts",
 	"files": [
 		"index.js",
 		"index.d.ts"
@@ -46,5 +46,8 @@
 		"@types/chrome": "^0.0.246",
 		"typescript": "^5.2.2",
 		"xo": "^0.56.0"
+	},
+	"engines": {
+		"node": ">=18"
 	}
 }
