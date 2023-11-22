@@ -34,7 +34,9 @@ export async function getTabUrl(
 	}
 }
 
-export async function canAccessTab(target: number | Target): Promise<boolean> {
+export async function canAccessTab(
+	target: number | Target,
+): Promise<boolean> {
 	return executeFunction(castTarget(target), () => true).then(
 		() => true,
 		() => false,
