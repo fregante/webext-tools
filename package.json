@@ -1,6 +1,6 @@
 {
 	"name": "webext-tools",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "Utility functions for Web Extensions, manifest v2 and v3",
 	"keywords": [
 		"extension",
