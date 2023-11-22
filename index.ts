@@ -60,7 +60,7 @@ export async function doesTabExist(tabId: number): Promise<boolean> {
 export function setActionPopup(
 	getPopupUrl: (
 		tabUrl: string | undefined,
-	) => Promise<string | undefined>,
+	) => Promise<string | undefined> | string | undefined,
 ): void {
 	const setOnActiveTab = async (windowId?: number) => {
 		const [tab] = await chromeP.tabs.query({
