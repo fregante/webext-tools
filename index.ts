@@ -12,7 +12,7 @@ export function castTarget(target: number | Target): Target {
 		: {
 			tabId: target,
 			frameId: 0,
-		  };
+		};
 }
 
 export async function getTabUrl(
