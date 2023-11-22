@@ -93,6 +93,25 @@ if (tabExists) {
 }
 ```
 
+### `setActionPopup(getPopupUrl)`
+
+Sets the popup URL (or removes the popup) depending on the current tab. This listens to tab changes and it will call the `getPopupUrl` callback to let you determine what popup to show. The callback can also be an async function.
+
+This can be combined with `chrome.action.onClicked` to toggle between callback and popup.
+
+The `tabs` permission is required for this.
+
+```js
+chrome.action.onClicked.addListener(() => {
+	console.log('Browser action was clicked on a tab other than Google’s')
+});
+setActionPopup(tabUrl => {
+	return String(tabUrl).startsWith('https://google.com')
+		? './google-popup.html'
+		: undefined;
+})
+```
+
 ## Related
 
 - [webext-content-scripts](https://github.com/fregante/webext-content-scripts) - Utility functions to inject content scripts in WebExtensions.
