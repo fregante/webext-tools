@@ -93,6 +93,18 @@ if (tabExists) {
 }
 ```
 
+### `setActionPopup(getPopupUrl)`
+
+Sets the popup URL (or removes the popup) depending on the current tab. This listens to tab changes and it will call the `getPopupUrl` callback to let you determine what popup to show. The callback can also be an async function
+
+```js
+setActionPopup(tabUrl => {
+	return String(tabUrl).startsWith('https://google.com')
+		? './google-popup.html'
+		: undefined;
+})
+```
+
 ## Related
 
 - [webext-content-scripts](https://github.com/fregante/webext-content-scripts) - Utility functions to inject content scripts in WebExtensions.
