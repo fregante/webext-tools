@@ -62,6 +62,8 @@ export function setActionPopup(
 		tabUrl: string | undefined,
 	) => Promise<string | undefined> | string | undefined,
 ): void {
+	const browserAction = chrome.action ?? chromeP.browserAction;
+
 	const setOnActiveTab = async (windowId?: number) => {
 		const [tab] = await chromeP.tabs.query({
 			active: true,
@@ -72,7 +74,7 @@ export function setActionPopup(
 			return;
 		}
 
-		await chromeP.browserAction.setPopup({
+		await browserAction.setPopup({
 			popup: await getPopupUrl(tab.url) ?? '',
 			tabId: tab.id,
 		});
@@ -85,7 +87,7 @@ export function setActionPopup(
 	chrome.tabs.onActivated.addListener(async activeInfo => {
 		const tab = await chromeP.tabs.get(activeInfo.tabId);
 
-		await chromeP.browserAction.setPopup({
+		await browserAction.setPopup({
 			popup: await getPopupUrl(tab.url) ?? '',
 			tabId: tab.id,
 		});
@@ -93,7 +95,7 @@ export function setActionPopup(
 
 	chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 		if (tab.active && changeInfo.url) {
-			await chromeP.browserAction.setPopup({
+			await browserAction.setPopup({
 				popup: await getPopupUrl(tab.url) ?? '',
 				tabId,
 			});
