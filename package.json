@@ -1,6 +1,6 @@
 {
 	"name": "webext-tools",
-	"version": "1.2.3",
+	"version": "1.2.4",
 	"description": "Utility functions for Web Extensions, manifest v2 and v3",
 	"keywords": [
 		"extension",
@@ -37,15 +37,15 @@
 		]
 	},
 	"dependencies": {
-		"webext-content-scripts": "^2.6.0",
-		"webext-detect-page": "^4.1.1",
+		"webext-content-scripts": "^2.6.1",
+		"webext-detect-page": "^5.0.1",
 		"webext-polyfill-kinda": "^1.0.2"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^5.0.0",
-		"@types/chrome": "^0.0.253",
-		"typescript": "^5.3.2",
-		"xo": "^0.56.0"
+		"@types/chrome": "^0.0.268",
+		"typescript": "^5.4.5",
+		"xo": "^0.58.0"
 	},
 	"engines": {
 		"node": ">=18"
