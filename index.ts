@@ -1,5 +1,6 @@
 import chromeP from 'webext-polyfill-kinda';
 import {executeFunction} from 'webext-content-scripts';
+import {isFirefox, isSafari} from 'webext-detect-page';
 
 export type Target = {
 	tabId: number;
@@ -101,4 +102,23 @@ export function setActionPopup(
 			});
 		}
 	});
+}
+
+const optionsShortcut = 'WEBEXT_TOOLS_OPTIONS';
+
+function onContextMenuClick({menuItemId}: chrome.contextMenus.OnClickData): void {
+	if (menuItemId === optionsShortcut) {
+		void chrome.runtime.openOptionsPage();
+	}
+}
+
+export function addOptionsContextMenu(): void {
+	if (isFirefox() || isSafari()) {
+		chrome.contextMenus.onClicked.addListener(onContextMenuClick);
+		chrome.contextMenus.create({
+			id: optionsShortcut,
+			title: 'Options…',
+			contexts: 'action' in chrome ? ['action'] : ['browser_action'],
+		});
+	}
 }
