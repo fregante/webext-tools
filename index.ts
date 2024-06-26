@@ -35,15 +35,6 @@ export async function getTabUrl(
 	}
 }
 
-export async function canAccessTab(
-	target: number | Target,
-): Promise<boolean> {
-	return executeFunction(castTarget(target), () => true).then(
-		() => true,
-		() => false,
-	);
-}
-
 /** Utility to await promises where you only care whether they throw or not */
 async function isPromiseFulfilled(promise: Promise<unknown>): Promise<boolean> {
 	try {

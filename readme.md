@@ -21,7 +21,6 @@ npm install webext-tools
 // This module is only offered as a ES Module
 import {
 	getTabUrl,
-	canAccessTab,
 	addOptionsContextMenu,
 } from 'webext-tools';
 ```
@@ -54,36 +53,6 @@ if (url) {
 	console.warn('We have no access to the frame');
 }
 ```
-
-### `canAccessTab(tabId)`
-### `canAccessTab({tabId, frameId})`
-
-Checks whether the extension has access to a specific tab or frame (i.e. content scripts are allowed to run), either via `activeTab` permission or regular host permissions.
-
-```js
-const tabId = 42;
-const access = await canAccessTab(tabId);
-if (access) {
-	console.log('We can access this tab');
-	chrome.tabs.executeScript(tabId, {file: 'my-script.js'});
-} else {
-	console.warn('We have no access to the tab');
-}
-```
-
-```js
-const access = await canAccessTab({
-	tabId: 42,
-	frameId: 56,
-});
-if (access) {
-	console.log('We can access this frame');
-	chrome.tabs.executeScript(42, {file: 'my-script.js', frameId: 56});
-} else {
-	console.warn('We have no access to the frame');
-}
-```
-
 
 ### `doesTabExist(tabId)`
 
