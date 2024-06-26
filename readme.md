@@ -19,7 +19,11 @@ npm install webext-tools
 
 ```js
 // This module is only offered as a ES Module
-import {getTabUrl, canAccessTab} from 'webext-tools';
+import {
+	getTabUrl,
+	canAccessTab,
+	addOptionsContextMenu,
+} from 'webext-tools';
 ```
 
 ## Usage
@@ -111,6 +115,17 @@ setActionPopup(tabUrl => {
 		: undefined;
 })
 ```
+
+### `addOptionsContextMenu()`
+
+Chrome lets user reach the options via browser action context menu. However in Safari and Firefox you need a few more clicks to reach it.
+
+This helper will automatically add an "Options…" menu item to the browser action context menu to both Safari and Firefox. Nothing happens in Chrome.
+
+Requirements:
+
+- `action` or `browser_action` specified in your manifest.json
+- `contextMenu` permission
 
 ## Related
 
