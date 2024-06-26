@@ -37,6 +37,7 @@
 		]
 	},
 	"dependencies": {
+		"webext-content-scripts": "^2.6.1",
 		"webext-detect-page": "^5.0.1",
 		"webext-polyfill-kinda": "^1.0.2"
 	},

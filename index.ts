@@ -1,4 +1,5 @@
 import chromeP from 'webext-polyfill-kinda';
+import {executeFunction} from 'webext-content-scripts';
 import {isChrome} from 'webext-detect-page';
 
 export type Target = {
