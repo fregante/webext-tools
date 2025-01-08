@@ -5,6 +5,7 @@
 	},
 	"files": [
 		"global.d.ts",
-		"index.ts"
-	]
+		"index.ts",
+		"source/create-context-menu.ts"
+	],
 }

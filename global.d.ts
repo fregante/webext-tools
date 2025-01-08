@@ -1,8 +1,4 @@
-import type {Tabs} from 'webextension-polyfill';
-
-// Only required until https://github.com/fregante/webext-polyfill-kinda/issues/2
-declare global {
-	namespace browser {
-		const tabs: Tabs.Static;
-	}
+declare namespace chrome.contextMenus {
+	// export function update(id: string | number, updateProperties: UpdateProperties): Promise<void>;
+	// export function create(createProperties: CreateProperties): Promise<void>;
 }

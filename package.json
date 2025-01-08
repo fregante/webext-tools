@@ -43,7 +43,7 @@
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^6.0.0",
-		"@types/chrome": "^0.0.268",
+		"@types/chrome": "^0.0.290",
 		"typescript": "^5.5.2",
 		"xo": "^0.58.0"
 	},
