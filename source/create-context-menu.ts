@@ -38,8 +38,6 @@ export default async function registerContextMenu(
 
 	try {
 		// Try updating it first. It will fail if missing, so we attempt to create it instead
-		// @ts-expect-error wrong types
-		// eslint-disable-next-line @typescript-eslint/await-thenable, @typescript-eslint/no-confusing-void-expression
 		await chrome.contextMenus.update(nativeSettings.id, nativeSettings);
 	} catch {
 		// eslint-disable-next-line @typescript-eslint/await-thenable -- wrong types
