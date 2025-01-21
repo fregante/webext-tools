@@ -4,7 +4,6 @@
 		"outDir": "."
 	},
 	"files": [
-		"global.d.ts",
 		"index.ts",
 		"source/create-context-menu.ts"
 	],
