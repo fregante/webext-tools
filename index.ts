@@ -1,6 +1,5 @@
 import chromeP from 'webext-polyfill-kinda';
 import {executeFunction} from 'webext-content-scripts';
-import {isChrome} from 'webext-detect';
 
 export type Target = {
 	tabId: number;
@@ -101,28 +100,4 @@ function onContextMenuClick({menuItemId}: chrome.contextMenus.OnClickData): void
 	if (menuItemId === optionsShortcut) {
 		void chrome.runtime.openOptionsPage();
 	}
-}
-
-export function addOptionsContextMenu(): void {
-	if (isChrome()) {
-		return;
-	}
-
-	if (!(chrome.action ?? chrome.browserAction)) {
-		console.warn('Add `action` or `browser_action` to your manifest to enable `addOptionsContextMenu`.');
-		return;
-	}
-
-	if (!chrome.contextMenus) {
-		// Silently ignore if the API is not available, like in Firefox Android
-		// https://github.com/fregante/webext-permission-toggle/pull/53
-		return;
-	}
-
-	chrome.contextMenus.onClicked.addListener(onContextMenuClick);
-	chrome.contextMenus.create({
-		id: optionsShortcut,
-		title: 'Options…',
-		contexts: 'action' in chrome ? ['action'] : ['browser_action'],
-	});
 }
