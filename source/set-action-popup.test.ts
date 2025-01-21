@@ -1,5 +1,3 @@
-// TODO: Add tests for the listeners
-
 import {setTimeout} from 'node:timers/promises';
 import {
 	assert, it, beforeEach, vi,
@@ -35,8 +33,14 @@ it('sets the popup on the active tab', async () => {
 
 	setActionPopup(getPopupUrl);
 
-	await setTimeout(10);
-
 	// @ts-expect-error missing types
-	assert.equal(await chrome.action.setPopup.lastCall.args[0].popup, 'https://example.com');
+	assert.equal(chrome.action.setPopup.notCalled, true);
+
+	chrome.tabs.onActivated.trigger({tabId: 100});
+
+	await setTimeout(1);
+
+	assert.equal(chrome.tabs.query.calledOnce, true);
+
+	// TODO: Add more tests for the listeners
 });
