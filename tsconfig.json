@@ -1,10 +1,13 @@
 {
 	"extends": "@sindresorhus/tsconfig",
 	"compilerOptions": {
-		"outDir": "."
+		"rootDir": "./source",
+		"outDir": "./distribution",
+		"paths": {
+			"webext-tools": ["./source/index.ts"]
+		},
 	},
-	"files": [
-		"index.ts",
-		"source/create-context-menu.ts"
-	],
+	"include": [
+		"source",
+	]
 }
