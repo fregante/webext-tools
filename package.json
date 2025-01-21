@@ -18,35 +18,69 @@
 	"license": "MIT",
 	"author": "Federico Brigante <me@fregante.com> (https://fregante.com)",
 	"type": "module",
-	"exports": "./index.js",
-	"types": "./index.d.ts",
+	"exports": "./distribution/index.js",
+	"types": "./distribution/index.d.ts",
 	"files": [
-		"index.js",
-		"index.d.ts"
+		"distribution"
 	],
 	"scripts": {
 		"build": "tsc",
-		"prepare": "tsc --sourceMap false",
-		"test": "xo && tsc --noEmit",
+		"demo:build": "parcel build --no-cache",
+		"demo:watch": "parcel watch --no-cache",
+		"prepack": "tsc --sourceMap false",
+		"test": "tsc --noEmit && xo && vitest run",
+		"test:watch": "vitest",
 		"watch": "tsc --watch"
 	},
 	"xo": {
 		"envs": [
-			"browser",
-			"webextensions"
+			"browser"
+		],
+		"globals": [
+			"chrome"
 		]
 	},
 	"dependencies": {
 		"webext-content-scripts": "^2.7.0",
+		"webext-detect": "^5.3.2",
 		"webext-polyfill-kinda": "^1.0.2"
 	},
 	"devDependencies": {
-		"@sindresorhus/tsconfig": "^6.0.0",
-		"@types/chrome": "^0.0.268",
-		"typescript": "^5.5.2",
-		"xo": "^0.58.0"
+		"@parcel/config-webextension": "^2.13.3",
+		"@sindresorhus/tsconfig": "^7.0.0",
+		"@types/chrome": "^0.0.299",
+		"@types/jest": "^29.5.14",
+		"@types/sinon-chrome": "^2.2.15",
+		"jest-chrome": "^0.8.0",
+		"parcel": "^2.13.3",
+		"sinon-chrome": "^3.0.1",
+		"typescript": "^5.7.3",
+		"vitest": "^3.0.3",
+		"xo": "^0.60.0"
 	},
 	"engines": {
 		"node": ">=18"
+	},
+	"targets": {
+		"main": false,
+		"default": {
+			"engines": {
+				"browsers": ""
+			},
+			"source": "./source/demo/manifest.json",
+			"distDir": "./.built/demo",
+			"sourceMap": {
+				"inline": true
+			},
+			"optimize": false
+		}
+	},
+	"webExt": {
+		"sourceDir": ".built/demo",
+		"run": {
+			"startUrl": [
+				"https://example.com"
+			]
+		}
 	}
 }

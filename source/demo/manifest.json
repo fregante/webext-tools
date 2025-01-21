@@ -1,0 +1,13 @@
+{
+	"name": "webext-tools",
+	"version": "0.0.0",
+	"manifest_version": 3,
+	"permissions": ["scripting"],
+	"host_permissions": ["https://*.example.com/*"],
+	"action": {
+	},
+	"background": {
+		"service_worker": "background.ts",
+		"type": "module"
+	}
+}
