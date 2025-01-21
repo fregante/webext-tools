@@ -19,8 +19,8 @@ Or download the [standalone bundle](https://bundle.fregante.com/?pkg=webext-tool
 
 This package exports various utilities, just import what you need.
 
-- [doesTabExist](./source/does-tab-exist.md) - Checks whether the tab exists.
-- [getTabUrl](./source/get-tab-url.md) - Retrieves a tab or frame’s URL with a plain `activeTab` permission (or regular host/`tabs` permissions).
+- [doesTabExist](./source/does-tab-exist.md) - Checks whether a tab exists.
+- [getTabUrl](./source/get-tab-url.md) - Get a tab or frame’s URL even with limited permissions.
 - [setActionPopup](./source/set-action-popup.md) - Sets the popup URL (or removes the popup) depending on the current tab.
 - `addOptionsContextMenu` was moved to [webext-bugs](https://github.com/fregante/webext-bugs).
 
