@@ -1,10 +1,13 @@
 {
 	"extends": "@sindresorhus/tsconfig",
 	"compilerOptions": {
-		"outDir": "."
+		"rootDir": "./source",
+		"outDir": "./distribution",
+		"paths": {
+			"webext-tools": ["./source/index.ts"]
+		},
 	},
-	"files": [
-		"global.d.ts",
-		"index.ts"
+	"include": [
+		"source",
 	]
 }

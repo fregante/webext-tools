@@ -10,3 +10,7 @@ logs
 *.map
 index.js
 index.d.ts
+.parcel-cache
+dist
+distribution
+.built
