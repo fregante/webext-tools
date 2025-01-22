@@ -38,7 +38,11 @@
 		],
 		"globals": [
 			"chrome"
-		]
+		],
+		"rules": {
+			"unicorn/prefer-top-level-await": "off",
+			"n/no-unsupported-features/node-builtins": "off"
+		}
 	},
 	"dependencies": {
 		"webext-content-scripts": "^2.7.0",

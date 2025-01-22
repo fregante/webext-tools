@@ -15,7 +15,7 @@ function warnOrThrow(): void {
 	console.warn('chrome.contextMenus is not available');
 }
 
-export default async function registerContextMenu(
+export async function createContextMenu(
 	settings: chrome.contextMenus.CreateProperties & {id: string}): Promise<void> {
 	const {onclick, ...nativeSettings} = settings;
 
@@ -37,10 +37,19 @@ export default async function registerContextMenu(
 	}
 
 	try {
+		const {id, ...updateSettings} = nativeSettings;
 		// Try updating it first. It will fail if missing, so we attempt to create it instead
-		await chrome.contextMenus.update(nativeSettings.id, nativeSettings);
-	} catch {
+		await chromeP.contextMenus.update(id, updateSettings);
+		return;
+	} catch {}
+
+	try {
 		// eslint-disable-next-line @typescript-eslint/await-thenable -- wrong types
 		await chromeP.contextMenus.create(nativeSettings);
+	} catch (error) {
+		// It can still fail due to race conditions
+		if (!(error as Error)?.message.startsWith('Cannot create item with duplicate id')) {
+			throw error;
+		}
 	}
 }
