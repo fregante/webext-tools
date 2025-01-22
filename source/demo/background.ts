@@ -33,4 +33,15 @@ chrome.action.onClicked.addListener(({openerTabId}) => {
 	});
 
 	console.log('Context menu overridden without issue');
+
+	await createContextMenu({
+		id: 'google-context-menu',
+		title: 'Open Google',
+		contexts: ['action'],
+		onclick(_, tab) {
+			void chrome.tabs.create({url: 'https://google.com', openerTabId: tab.id});
+		},
+	});
+
+	console.log('Second menu created');
 })();

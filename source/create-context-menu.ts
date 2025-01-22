@@ -1,5 +1,19 @@
 import chromeP from 'webext-polyfill-kinda';
 
+const listeners = new Map<string | number, ClickListener>();
+
+export type ClickListener = (
+	data: chrome.contextMenus.OnClickData,
+	tab: chrome.tabs.Tab,
+) => void;
+
+function isDuplicateError(error: string): boolean {
+	return (
+		error.includes('Cannot create item with duplicate id')
+		|| error.includes('already exists in menus.create')
+	);
+}
+
 /* Throws an error due to misconfiguration, unless misconfiguration can't be verified (Firefox cleans the manifest of unknown properties) */
 function warnOrThrow(): void {
 	const manifest = chrome.runtime.getManifest();
@@ -15,9 +29,16 @@ function warnOrThrow(): void {
 	console.warn('chrome.contextMenus is not available');
 }
 
+function globalListener(
+	data: chrome.contextMenus.OnClickData,
+	tab?: chrome.tabs.Tab,
+): void {
+	listeners.get(data.menuItemId)?.(data, tab!);
+}
+
 export async function createContextMenu(
 	settings: chrome.contextMenus.CreateProperties & {id: string}): Promise<void> {
-	const {onclick, ...nativeSettings} = settings;
+	const {onclick, ...createSettings} = settings;
 
 	if (!chrome.contextMenus) {
 		warnOrThrow();
@@ -25,31 +46,31 @@ export async function createContextMenu(
 	}
 
 	if (onclick) {
-		// Deal with it separately because Chrome does not support the prop in service workers
-		chrome.contextMenus.onClicked.addListener((
-			data: chrome.contextMenus.OnClickData,
-			tab?: chrome.tabs.Tab,
-		) => {
-			if (data.menuItemId === nativeSettings.id) {
-				onclick(data, tab!);
-			}
-		});
+		// Deal with it separately because Chrome does not support the prop in service workers.
+		// Add single listener or else multiple `create` calls will register multiple listeners.
+		chrome.contextMenus.onClicked.addListener(globalListener);
+		listeners.set(createSettings.id, onclick);
 	}
 
-	try {
-		const {id, ...updateSettings} = nativeSettings;
-		// Try updating it first. It will fail if missing, so we attempt to create it instead
-		await chromeP.contextMenus.update(id, updateSettings);
-		return;
-	} catch {}
+	// Don't "remove+create" because this will re-order the items, if other items don't use the same mechanism.
+	// Instead, attempt updating it to ensure the last call is always accurate.
+	// If it exists:
+	// - `update` works
+	// - `create` fails and the error is ignored
+	// If it doesn't exist:
+	// - `update` fails (only in Chrome) and the error is ignored
+	// - `create` works
+	const {id, ...updateSettings} = createSettings;
+	const [, creation] = await Promise.allSettled([
+		chromeP.contextMenus.update(id, updateSettings),
+		chromeP.contextMenus.create(createSettings),
+	]);
 
-	try {
-		// eslint-disable-next-line @typescript-eslint/await-thenable -- wrong types
-		await chromeP.contextMenus.create(nativeSettings);
-	} catch (error) {
-		// It can still fail due to race conditions
-		if (!(error as Error)?.message.startsWith('Cannot create item with duplicate id')) {
-			throw error;
-		}
+	if (
+		creation.status === 'rejected'
+		&& !isDuplicateError(String(creation.reason))
+	) {
+		// eslint-disable-next-line @typescript-eslint/only-throw-error -- It is an error
+		throw creation.reason;
 	}
 }
