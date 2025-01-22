@@ -20,15 +20,12 @@
 	"type": "module",
 	"exports": "./distribution/index.js",
 	"types": "./distribution/index.d.ts",
-	"files": [
-		"distribution"
-	],
 	"scripts": {
 		"build": "tsc",
 		"demo:build": "parcel build --no-cache",
-		"demo:watch": "parcel watch --no-cache",
+		"demo:watch": "parcel watch --no-cache --no-hmr",
 		"prepack": "tsc --sourceMap false",
-		"test": "tsc --noEmit && xo && vitest run",
+		"test": "tsc --noEmit && xo && vitest run && npm run demo:build",
 		"test:watch": "vitest",
 		"watch": "tsc --watch"
 	},
