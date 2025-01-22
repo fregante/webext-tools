@@ -2,7 +2,7 @@
 	"name": "webext-tools",
 	"version": "0.0.0",
 	"manifest_version": 3,
-	"permissions": ["scripting"],
+	"permissions": ["scripting", "contextMenus"],
 	"host_permissions": ["https://*.example.com/*"],
 	"action": {
 	},
