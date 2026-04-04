@@ -42,7 +42,8 @@
 		}
 	},
 	"dependencies": {
-		"webext-detect": "^5.3.2"
+		"webext-detect": "^5.3.2",
+		"webext-polyfill-kinda": "^1.0.2"
 	},
 	"devDependencies": {
 		"@parcel/config-webextension": "^2.13.3",

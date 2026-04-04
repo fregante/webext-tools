@@ -2,6 +2,7 @@
 
 It wraps `chrome.contextMenus.create` and `chrome.contextMenus.onClicked` and resolves many of its issues:
 
+- it returns a promise (the native one only supports callbacks)
 - it does not throw if you call it twice with the same `id`
 - it does not throw if the API is not available on the platform (Firefox Android, Safari iOS)
 - it does throw helpfully if you forgot to add the `contextMenus` permission
