@@ -1,5 +1,3 @@
-import chromeP from 'webext-polyfill-kinda';
-
 const listeners = new Map<string | number, ClickListener>();
 
 export type ClickListener = (
@@ -62,8 +60,8 @@ export async function createContextMenu(
 	// - `create` works
 	const {id, ...updateSettings} = createSettings;
 	const [, creation] = await Promise.allSettled([
-		chromeP.contextMenus.update(id, updateSettings),
-		chromeP.contextMenus.create(createSettings),
+		chrome.contextMenus.update(id, updateSettings),
+		chrome.contextMenus.create(createSettings),
 	]);
 
 	if (
