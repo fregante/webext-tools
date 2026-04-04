@@ -1,32 +1,25 @@
 type CleanPathname<T extends string> = T extends `${string}${'#' | '?'}${string}` ? never : T;
 
-export type ExtensionUrlDetails = {
-	pathname?: string;
+export type ExtensionUrlOptions = {
 	hash?: string;
 	searchParams?: Record<string, string>;
 };
 
-export function getExtensionUrl<T extends string>(pathname: CleanPathname<T>): string;
-export function getExtensionUrl(details: ExtensionUrlDetails): string;
 export function getExtensionUrl<T extends string>(
-	pathnameOrDetails: CleanPathname<T> | ExtensionUrlDetails,
-): string {
-	if (typeof pathnameOrDetails === 'string') {
-		return chrome.runtime.getURL(pathnameOrDetails);
+	pathname: CleanPathname<T>,
+	options?: ExtensionUrlOptions,
+): URL {
+	const url = new URL(chrome.runtime.getURL(pathname));
+
+	if (options?.hash) {
+		url.hash = options.hash;
 	}
 
-	const {pathname, hash, searchParams} = pathnameOrDetails;
-	const url = new URL(chrome.runtime.getURL(pathname ?? ''));
-
-	if (hash) {
-		url.hash = hash;
-	}
-
-	if (searchParams) {
-		for (const [key, value] of Object.entries(searchParams)) {
+	if (options?.searchParams) {
+		for (const [key, value] of Object.entries(options.searchParams)) {
 			url.searchParams.set(key, value);
 		}
 	}
 
-	return url.toString();
+	return url;
 }

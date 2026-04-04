@@ -1,16 +1,16 @@
 # getExtensionUrl
 
-Generates an absolute URL for a resource bundled with the extension, using `runtime.getURL`.
+Generates a `URL` for a resource bundled with the extension, using `runtime.getURL`.
 
 ```js
 import {getExtensionUrl} from 'webext-tools';
 
-// Simple pathname string (# and ? are blocked by TypeScript types)
+// Simple pathname (# and ? are blocked by TypeScript types)
 const url = getExtensionUrl('/options.html');
 
-// Object form with hash and/or search params
-const urlWithHash = getExtensionUrl({pathname: '/options.html', hash: 'section'});
-const urlWithSearch = getExtensionUrl({pathname: '/options.html', searchParams: {tab: 'privacy'}});
+// With hash and/or search params as a second argument
+const urlWithHash = getExtensionUrl('/options.html', {hash: 'section'});
+const urlWithSearch = getExtensionUrl('/options.html', {searchParams: {tab: 'privacy'}});
 ```
 
 ## Compatibility
@@ -27,29 +27,19 @@ const urlWithSearch = getExtensionUrl({pathname: '/options.html', searchParams: 
 
 ## API
 
-### `getExtensionUrl(pathname)`
+### `getExtensionUrl(pathname, options?)`
 
-Accepts a pathname string. TypeScript types block `#` and `?` characters — use the object form to add a hash or search parameters.
+Returns a `URL` object for the given extension resource.
 
 #### `pathname`
 
-A path to a resource in the extension bundle (e.g. `'/options.html'`).
+The path to a resource in the extension bundle (e.g. `'/options.html'`). TypeScript types block `#` and `?` characters — use `options.hash` and `options.searchParams` instead.
 
----
-
-### `getExtensionUrl(details)`
-
-Accepts an object for when you need to include a hash or search parameters.
-
-#### `details.pathname`
-
-Optional. The path to the resource (e.g. `'options.html'`). Defaults to the extension root.
-
-#### `details.hash`
+#### `options.hash`
 
 Optional. The URL fragment, **without** the leading `#` (e.g. `'section'`).
 
-#### `details.searchParams`
+#### `options.searchParams`
 
 Optional. Key-value pairs for the query string (e.g. `{tab: 'privacy'}`). Accepts a `Record<string, string>` to prevent raw query strings like `'tab=privacy&lang=en'`.
 
