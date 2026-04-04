@@ -42,7 +42,6 @@
 		}
 	},
 	"dependencies": {
-		"webext-content-scripts": "^2.7.0",
 		"webext-detect": "^5.3.2",
 		"webext-polyfill-kinda": "^1.0.2"
 	},
