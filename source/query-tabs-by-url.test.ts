@@ -1,7 +1,7 @@
 import assert from 'node:assert';
 import {describe, it, beforeEach} from 'vitest';
 import chrome from 'sinon-chrome';
-import {getTabsByUrl} from './get-tabs-by-url.js';
+import {queryTabsByUrl} from './query-tabs-by-url.js';
 
 const mockTabs = [
 	{id: 1, url: 'https://example.com/page'},
@@ -15,20 +15,20 @@ beforeEach(() => {
 	chrome.tabs.query.withArgs({url: ['http://no-way.example.com/*']}).resolves([mockTabs[1]]);
 });
 
-describe('getTabsByUrl', () => {
+describe('queryTabsByUrl', () => {
 	it('should handle the matches array', async () => {
 		assert.deepEqual(
-			await getTabsByUrl([]),
+			await queryTabsByUrl([]),
 			[],
 			'No patterns means no tabs',
 		);
 		assert.deepEqual(
-			await getTabsByUrl(['https://example.com/*']),
+			await queryTabsByUrl(['https://example.com/*']),
 			[1],
 			'It should pass the query to chrome.tabs',
 		);
 		assert.deepEqual(
-			await getTabsByUrl(['*://*/*']),
+			await queryTabsByUrl(['*://*/*']),
 			[1, 2],
 			'It should pass the query to chrome.tabs',
 		);
@@ -37,22 +37,22 @@ describe('getTabsByUrl', () => {
 	it('should handle the `excludeMatches` array', async () => {
 		const excludeMatches = ['http://*/*'];
 		assert.deepEqual(
-			await getTabsByUrl([], excludeMatches),
+			await queryTabsByUrl([], excludeMatches),
 			[],
 			'No patterns means no tabs',
 		);
 		assert.deepEqual(
-			await getTabsByUrl(['https://example.com/*'], excludeMatches),
+			await queryTabsByUrl(['https://example.com/*'], excludeMatches),
 			[1],
 			'It should pass the query to chrome.tabs',
 		);
 		assert.deepEqual(
-			await getTabsByUrl(['*://*/*'], excludeMatches),
+			await queryTabsByUrl(['*://*/*'], excludeMatches),
 			[1],
 			'It should exclude tabs with URLs matching `excludeMatches`',
 		);
 		assert.deepEqual(
-			await getTabsByUrl(['http://no-way.example.com/*'], excludeMatches),
+			await queryTabsByUrl(['http://no-way.example.com/*'], excludeMatches),
 			[],
 			'It should exclude tabs with URLs matching `excludeMatches`, even if it\'s the only match',
 		);

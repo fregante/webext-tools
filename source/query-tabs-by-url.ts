@@ -1,6 +1,6 @@
 import {patternToRegex} from 'webext-patterns';
 
-export async function getTabsByUrl(matches: string[], excludeMatches?: string[]): Promise<number[]> {
+export async function queryTabsByUrl(matches: string[], excludeMatches?: string[]): Promise<number[]> {
 	if (matches.length === 0) {
 		return [];
 	}

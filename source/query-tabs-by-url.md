@@ -1,18 +1,18 @@
-# getTabsByUrl
+# queryTabsByUrl
 
 Returns the IDs of tabs whose URL matches the given patterns.
 
 ```js
-import {getTabsByUrl} from 'webext-tools';
+import {queryTabsByUrl} from 'webext-tools';
 
-const tabIds = await getTabsByUrl(['https://example.com/*']);
+const tabIds = await queryTabsByUrl(['https://example.com/*']);
 console.log('Matching tab IDs:', tabIds);
 ```
 
 ```js
-import {getTabsByUrl} from 'webext-tools';
+import {queryTabsByUrl} from 'webext-tools';
 
-const tabIds = await getTabsByUrl(['*://*/*'], ['http://*/*']);
+const tabIds = await queryTabsByUrl(['*://*/*'], ['http://*/*']);
 console.log('HTTPS-only tab IDs:', tabIds);
 ```
 
@@ -30,7 +30,7 @@ console.log('HTTPS-only tab IDs:', tabIds);
 
 ## API
 
-### `getTabsByUrl(matches, excludeMatches?)`
+### `queryTabsByUrl(matches, excludeMatches?)`
 
 Returns a promise that resolves to an array of tab IDs whose URL matches one of the `matches` patterns and does not match any of the `excludeMatches` patterns.
 
