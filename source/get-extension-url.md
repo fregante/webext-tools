@@ -1,16 +1,20 @@
 # getExtensionUrl
 
-Generates a `URL` for a resource bundled with the extension, using `runtime.getURL`.
+Generates a `URL` object for a resource bundled with the extension, using `runtime.getURL`.
 
 ```js
 import {getExtensionUrl} from 'webext-tools';
 
 // Simple pathname (# and ? are blocked by TypeScript types)
 const url = getExtensionUrl('/options.html');
+url.href; // → 'chrome-extension://<id>/options.html'
 
 // With hash and/or search params as a second argument
 const urlWithHash = getExtensionUrl('/options.html', {hash: 'section'});
+urlWithHash.href; // → 'chrome-extension://<id>/options.html#section'
+
 const urlWithSearch = getExtensionUrl('/options.html', {searchParams: {tab: 'privacy'}});
+urlWithSearch.href; // → 'chrome-extension://<id>/options.html?tab=privacy'
 ```
 
 ## Compatibility
