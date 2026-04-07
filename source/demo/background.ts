@@ -1,6 +1,6 @@
-import {setActionPopup} from 'webext-tools/set-action-popup';
-import {createContextMenu} from 'webext-tools/create-context-menu';
 import popupUrl from 'url:./example-popup.html';
+import {setActionPopup} from '../set-action-popup.js';
+import {createContextMenu} from '../create-context-menu.js';
 
 setActionPopup(tabUrl =>
 	String(tabUrl).includes('example.com')
