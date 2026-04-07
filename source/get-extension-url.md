@@ -3,7 +3,7 @@
 Generates a `URL` object for a resource bundled with the extension, using `runtime.getURL`.
 
 ```js
-import getExtensionUrl from 'webext-tools/get-extension-url';
+import getExtensionUrl from 'webext-tools/get-extension-url.js';
 
 // Simple pathname (# and ? are blocked by TypeScript types)
 const url = getExtensionUrl('/options.html');

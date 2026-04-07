@@ -20,8 +20,8 @@ Or download the [standalone bundle](https://bundle.fregante.com/?pkg=webext-tool
 This package exports various utilities. Each tool has its own entry point, so you only import what you need:
 
 ```js
-import doesTabExist from 'webext-tools/does-tab-exist';
-import getExtensionUrl from 'webext-tools/get-extension-url';
+import doesTabExist from 'webext-tools/does-tab-exist.js';
+import getExtensionUrl from 'webext-tools/get-extension-url.js';
 ```
 
 - [doesTabExist](./source/does-tab-exist.md) - Checks whether a tab exists.
