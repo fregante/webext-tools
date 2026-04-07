@@ -6,12 +6,10 @@ import {getTabUrl} from './get-tab-url.js';
 
 beforeEach(() => {
 	chrome.tabs.get.resetHistory();
-	// @ts-expect-error wrong types
-	chrome.runtime.lastError = undefined;
 });
 
 it('returns the tab URL', async () => {
-	chrome.tabs.get.withArgs(0).yields({
+	chrome.tabs.get.withArgs(0).resolves({
 		url: 'https://example.com',
 	});
 
@@ -19,8 +17,7 @@ it('returns the tab URL', async () => {
 });
 
 it('returns undefined if the tab doesn’t exist', async () => {
-	chrome.tabs.get.withArgs(0).yields(undefined);
-	chrome.runtime.lastError = {message: 'Error'};
+	chrome.tabs.get.withArgs(0).rejects(new Error('Tab not found'));
 
 	await expect(getTabUrl(0)).resolves.toBeUndefined();
 });

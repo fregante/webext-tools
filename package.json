@@ -1,7 +1,7 @@
 {
 	"name": "webext-tools",
 	"version": "3.0.0",
-	"description": "Utility functions for Web Extensions, manifest v2 and v3",
+	"description": "Utility functions for Web Extensions",
 	"keywords": [
 		"extension",
 		"chrome",
@@ -42,7 +42,6 @@
 		}
 	},
 	"dependencies": {
-		"webext-content-scripts": "^2.7.0",
 		"webext-detect": "^5.3.2",
 		"webext-polyfill-kinda": "^1.0.2"
 	},

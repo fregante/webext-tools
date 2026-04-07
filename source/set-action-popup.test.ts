@@ -16,8 +16,6 @@ beforeEach(() => {
 	chrome.windows.onFocusChanged.removeListeners();
 	chrome.tabs.onActivated.removeListeners();
 	chrome.tabs.onUpdated.removeListeners();
-	// @ts-expect-error wrong types
-	chrome.runtime.lastError = undefined;
 });
 
 it('sets the popup on the active tab', async () => {
@@ -26,7 +24,7 @@ it('sets the popup on the active tab', async () => {
 	chrome.tabs.query.withArgs({
 		active: true,
 		lastFocusedWindow: true,
-	}).yields([{
+	}).resolves([{
 		id: 0,
 		url: 'https://example.com',
 	}]);

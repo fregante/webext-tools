@@ -3,7 +3,7 @@
 > Utility functions for Web Extensions
 
 - Browsers: Chrome, Firefox, and Safari
-- Manifest: v2 and v3
+- Manifest: v3
 
 **Sponsored by [PixieBrix](https://www.pixiebrix.com)** :tada:
 
