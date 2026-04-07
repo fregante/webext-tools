@@ -3,7 +3,7 @@
 Checks whether the tab exists.
 
 ```js
-import {doesTabExist} from 'webext-tools';
+import {doesTabExist} from 'webext-tools/does-tab-exist';
 
 const tabId = 42;
 const tabExists = await doesTabExist(tabId);

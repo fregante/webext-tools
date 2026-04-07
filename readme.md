@@ -17,7 +17,12 @@ Or download the [standalone bundle](https://bundle.fregante.com/?pkg=webext-tool
 
 ## Usage
 
-This package exports various utilities, just import what you need.
+This package exports various utilities. Each tool has its own entry point, so you only import what you need:
+
+```js
+import {doesTabExist} from 'webext-tools/does-tab-exist';
+import {getExtensionUrl} from 'webext-tools/get-extension-url';
+```
 
 - [doesTabExist](./source/does-tab-exist.md) - Checks whether a tab exists.
 - [getExtensionUrl](./source/get-extension-url.md) - Generates a `URL` object for a resource bundled with the extension.

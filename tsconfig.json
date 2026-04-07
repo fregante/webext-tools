@@ -4,7 +4,7 @@
 		"rootDir": "./source",
 		"outDir": "./distribution",
 		"paths": {
-			"webext-tools": ["./source/index.ts"]
+			"webext-tools/*": ["./source/*.ts"]
 		},
 	},
 	"include": [

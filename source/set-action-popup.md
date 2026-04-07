@@ -5,7 +5,7 @@ Sets the popup URL (or removes the popup) depending on the current tab. This lis
 This can be combined with `chrome.action.onClicked` to toggle between callback and popup.
 
 ```js
-import {setActionPopup} from 'webext-tools';
+import {setActionPopup} from 'webext-tools/set-action-popup';
 
 chrome.action.onClicked.addListener(() => {
 	chrome.tabs.create({url: 'https://www.google.com', openerTabId});

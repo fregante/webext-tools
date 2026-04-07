@@ -3,14 +3,14 @@
 Returns the IDs of tabs whose URL matches the given patterns.
 
 ```js
-import {queryTabsByUrl} from 'webext-tools';
+import {queryTabsByUrl} from 'webext-tools/query-tabs-by-url';
 
 const tabIds = await queryTabsByUrl(['https://example.com/*']);
 console.log('Matching tab IDs:', tabIds);
 ```
 
 ```js
-import {queryTabsByUrl} from 'webext-tools';
+import {queryTabsByUrl} from 'webext-tools/query-tabs-by-url';
 
 const tabIds = await queryTabsByUrl(['*://*/*'], ['http://*/*']);
 console.log('HTTPS-only tab IDs:', tabIds);

@@ -1,4 +1,5 @@
-import {setActionPopup, createContextMenu} from 'webext-tools';
+import {setActionPopup} from 'webext-tools/set-action-popup';
+import {createContextMenu} from 'webext-tools/create-context-menu';
 import popupUrl from 'url:./example-popup.html';
 
 setActionPopup(tabUrl =>

@@ -9,7 +9,7 @@ It wraps `chrome.contextMenus.create` and `chrome.contextMenus.onClicked` and re
 - it enables the `onclick` handler even in service workers
 
 ```js
-import {createContextMenu} from 'webext-tools';
+import {createContextMenu} from 'webext-tools/create-context-menu';
 
 createContextMenu({
 	id: 'example-context-menu',

@@ -18,8 +18,40 @@
 	"license": "MIT",
 	"author": "Federico Brigante <me@fregante.com> (https://fregante.com)",
 	"type": "module",
-	"exports": "./distribution/index.js",
-	"types": "./distribution/index.d.ts",
+	"exports": {
+		"./create-context-menu": {
+			"types": "./distribution/create-context-menu.d.ts",
+			"default": "./distribution/create-context-menu.js"
+		},
+		"./dev-tools-eval": {
+			"types": "./distribution/dev-tools-eval.d.ts",
+			"default": "./distribution/dev-tools-eval.js"
+		},
+		"./does-tab-exist": {
+			"types": "./distribution/does-tab-exist.d.ts",
+			"default": "./distribution/does-tab-exist.js"
+		},
+		"./get-extension-url": {
+			"types": "./distribution/get-extension-url.d.ts",
+			"default": "./distribution/get-extension-url.js"
+		},
+		"./get-tab-url": {
+			"types": "./distribution/get-tab-url.d.ts",
+			"default": "./distribution/get-tab-url.js"
+		},
+		"./query-tabs-by-url": {
+			"types": "./distribution/query-tabs-by-url.d.ts",
+			"default": "./distribution/query-tabs-by-url.js"
+		},
+		"./set-action-popup": {
+			"types": "./distribution/set-action-popup.d.ts",
+			"default": "./distribution/set-action-popup.js"
+		},
+		"./target": {
+			"types": "./distribution/target.d.ts",
+			"default": "./distribution/target.js"
+		}
+	},
 	"scripts": {
 		"build": "tsc",
 		"demo:build": "parcel build --no-cache",
