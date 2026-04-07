@@ -37,7 +37,10 @@ function globalListener(
 }
 
 export async function createContextMenu(
-	settings: chrome.contextMenus.CreateProperties & {id: string}): Promise<void> {
+	settings: Omit<chrome.contextMenus.CreateProperties, 'contexts'> & {
+		id: string;
+		contexts?: chrome.contextMenus.ContextType[];
+	}): Promise<void> {
 	const {onclick, ...createSettings} = settings;
 
 	if (!chrome.contextMenus) {

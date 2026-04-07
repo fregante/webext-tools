@@ -3,7 +3,7 @@
 > Utility functions for Web Extensions
 
 - Browsers: Chrome, Firefox, and Safari
-- Manifest: v2 and v3
+- Manifest: v3
 
 **Sponsored by [PixieBrix](https://www.pixiebrix.com)** :tada:
 
@@ -21,6 +21,7 @@ This package exports various utilities, just import what you need.
 
 - [doesTabExist](./source/does-tab-exist.md) - Checks whether a tab exists.
 - [getTabUrl](./source/get-tab-url.md) - Get a tab or frame’s URL even with limited permissions.
+- [queryTabsByUrl](./source/query-tabs-by-url.md) - Get the IDs of tabs matching URL patterns.
 - [setActionPopup](./source/set-action-popup.md) - Sets the popup URL (or removes the popup) depending on the current tab.
 - [createContextMenu](./source/create-context-menu.md) - Creates context menus without pain.
 - `addOptionsContextMenu` was moved to [webext-bugs](https://github.com/fregante/webext-bugs).

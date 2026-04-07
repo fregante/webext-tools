@@ -1,4 +1,3 @@
-import chromeP from 'webext-polyfill-kinda';
 import {getTabUrl} from './get-tab-url.js';
 
 export type GetPopupUrl = (
@@ -10,9 +9,7 @@ async function rawSetPopup(
 	tabId: number,
 	url?: string,
 ): Promise<void> {
-	const browserAction = chrome.action ?? chromeP.browserAction;
-
-	await browserAction.setPopup({
+	await chrome.action.setPopup({
 		popup: await getPopupUrl(url ?? await getTabUrl(tabId)) ?? '',
 		tabId,
 	});
@@ -24,7 +21,7 @@ export function setActionPopup(getPopupUrl: GetPopupUrl): void {
 			return;
 		}
 
-		const [tab] = await chromeP.tabs.query({
+		const [tab] = await chrome.tabs.query({
 			active: true,
 			...windowId ? {windowId} : {lastFocusedWindow: true},
 		});
