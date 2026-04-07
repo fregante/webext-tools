@@ -21,6 +21,7 @@ This package exports various utilities, just import what you need.
 
 - [doesTabExist](./source/does-tab-exist.md) - Checks whether a tab exists.
 - [getTabUrl](./source/get-tab-url.md) - Get a tab or frame’s URL even with limited permissions.
+- [getTabsByUrl](./source/get-tabs-by-url.md) - Get the IDs of tabs matching URL patterns.
 - [setActionPopup](./source/set-action-popup.md) - Sets the popup URL (or removes the popup) depending on the current tab.
 - [createContextMenu](./source/create-context-menu.md) - Creates context menus without pain.
 - `addOptionsContextMenu` was moved to [webext-bugs](https://github.com/fregante/webext-bugs).
