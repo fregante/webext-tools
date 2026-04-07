@@ -3,7 +3,7 @@ export type Target = {
 	frameId: number;
 };
 
-export function castTarget(target: number | Target): Target {
+export default function castTarget(target: number | Target): Target {
 	return typeof target === 'object'
 		? target
 		: {

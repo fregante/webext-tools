@@ -5,7 +5,7 @@ export type ExtensionUrlOptions = {
 	searchParams?: Record<string, string>;
 };
 
-export function getExtensionUrl<T extends string>(
+export default function getExtensionUrl<T extends string>(
 	pathname: CleanPathname<T>,
 	options?: ExtensionUrlOptions,
 ): URL {

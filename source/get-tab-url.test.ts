@@ -2,7 +2,7 @@
 
 import {expect, it, beforeEach} from 'vitest';
 import chrome from 'sinon-chrome';
-import {getTabUrl} from './get-tab-url.js';
+import getTabUrl from './get-tab-url.js';
 
 beforeEach(() => {
 	chrome.tabs.get.resetHistory();

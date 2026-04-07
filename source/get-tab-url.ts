@@ -1,6 +1,6 @@
-import {type Target, castTarget} from './target.js';
+import castTarget, {type Target} from './target.js';
 
-export async function getTabUrl(
+export default async function getTabUrl(
 	target: number | Target,
 ): Promise<string | undefined> {
 	const {frameId, tabId} = castTarget(target);

@@ -1,6 +1,6 @@
 import {expect, it, beforeEach} from 'vitest';
 import chrome from 'sinon-chrome';
-import {devToolsEval} from './dev-tools-eval.js';
+import devToolsEval from './dev-tools-eval.js';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const evalStub: any = (chrome as any).devtools.inspectedWindow.eval;

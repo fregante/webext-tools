@@ -8,7 +8,7 @@ function printf(template: string, arguments_: string[]): string {
 
 /** Wrapper around the dev tools' `eval` function to throw proper errors */
 // eslint-disable-next-line unicorn/prevent-abbreviations
-export async function devToolsEval<T>(code: string): Promise<T> {
+export default async function devToolsEval<T>(code: string): Promise<T> {
 	return new Promise<T>((resolve, reject) => {
 		chrome.devtools.inspectedWindow.eval<T>(code, (response, error) => {
 			// Handle Dev Tools API error response

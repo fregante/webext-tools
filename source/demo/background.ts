@@ -1,6 +1,6 @@
 import popupUrl from 'url:./example-popup.html';
-import {setActionPopup} from '../set-action-popup.js';
-import {createContextMenu} from '../create-context-menu.js';
+import setActionPopup from '../set-action-popup.js';
+import createContextMenu from '../create-context-menu.js';
 
 setActionPopup(tabUrl =>
 	String(tabUrl).includes('example.com')

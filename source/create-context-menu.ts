@@ -36,7 +36,7 @@ function globalListener(
 	listeners.get(data.menuItemId)?.(data, tab!);
 }
 
-export async function createContextMenu(
+export default async function createContextMenu(
 	settings: Omit<chrome.contextMenus.CreateProperties, 'contexts'> & {
 		id: string;
 		contexts?: chrome.contextMenus.ContextType[];
