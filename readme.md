@@ -20,6 +20,7 @@ Or download the [standalone bundle](https://bundle.fregante.com/?pkg=webext-tool
 This package exports various utilities, just import what you need.
 
 - [doesTabExist](./source/does-tab-exist.md) - Checks whether a tab exists.
+- [getExtensionUrl](./source/get-extension-url.md) - Generates a `URL` object for a resource bundled with the extension.
 - [getTabUrl](./source/get-tab-url.md) - Get a tab or frame’s URL even with limited permissions.
 - [queryTabsByUrl](./source/query-tabs-by-url.md) - Get the IDs of tabs matching URL patterns.
 - [setActionPopup](./source/set-action-popup.md) - Sets the popup URL (or removes the popup) depending on the current tab.
