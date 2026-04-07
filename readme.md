@@ -25,6 +25,7 @@ This package exports various utilities, just import what you need.
 - [queryTabsByUrl](./source/query-tabs-by-url.md) - Get the IDs of tabs matching URL patterns.
 - [setActionPopup](./source/set-action-popup.md) - Sets the popup URL (or removes the popup) depending on the current tab.
 - [createContextMenu](./source/create-context-menu.md) - Creates context menus without pain.
+- [devToolsEval](./source/dev-tools-eval.md) - Wrapper around the DevTools `eval` function that throws proper errors.
 - `addOptionsContextMenu` was moved to [webext-bugs](https://github.com/fregante/webext-bugs).
 
 ## Related
