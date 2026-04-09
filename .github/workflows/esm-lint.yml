@@ -90,7 +90,7 @@ jobs:
           echo '{"extends":"@sindresorhus/tsconfig","files":["index.ts"]}' >
           tsconfig.json
       - run: npx --package typescript -- tsc
-      - run: cat distribution/does-tab-exist.js
+      - run: cat distribution/index.js
   Node:
     runs-on: ubuntu-latest
     needs: Pack
