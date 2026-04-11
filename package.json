@@ -1,6 +1,6 @@
 {
 	"name": "webext-tools",
-	"version": "3.0.0",
+	"version": "4.0.0",
 	"description": "Utility functions for Web Extensions",
 	"keywords": [
 		"extension",
