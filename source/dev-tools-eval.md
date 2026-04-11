@@ -13,10 +13,11 @@ const result = await devToolsEval('document.title');
 ## Compatibility
 
 - Chrome
+- Firefox
 
 ## Permissions
 
-- `devtools_page` in `manifest.json`
+- None
 
 ## Context
 
