@@ -3,7 +3,7 @@
 A no-error function to retrieve a tab or frame’s URL with a plain `activeTab` permission (or regular host/`tabs` permissions).
 
 ```js
-import {getTabUrl} from 'webext-tools';
+import getTabUrl from 'webext-tools/get-tab-url.js';
 
 const tabId = 42;
 const url = await getTabUrl(tabId);
@@ -15,7 +15,7 @@ if (url) {
 ```
 
 ```js
-import {getTabUrl} from 'webext-tools';
+import getTabUrl from 'webext-tools/get-tab-url.js';
 
 const url = await getTabUrl({
 	tabId: 42,

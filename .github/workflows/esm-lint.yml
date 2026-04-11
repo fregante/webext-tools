@@ -1,5 +1,5 @@
 env:
-  IMPORT_STATEMENT: import "webext-tools"
+  IMPORT_STATEMENT: import "webext-tools/does-tab-exist.js"
 
 # FILE GENERATED WITH: npx ghat fregante/ghatemplates/esm-lint
 # SOURCE: https://github.com/fregante/ghatemplates

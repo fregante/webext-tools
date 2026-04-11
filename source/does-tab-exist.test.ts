@@ -1,6 +1,6 @@
 import {expect, it, beforeEach} from 'vitest';
 import chrome from 'sinon-chrome';
-import {doesTabExist} from './does-tab-exist.js';
+import doesTabExist from './does-tab-exist.js';
 
 beforeEach(() => {
 	chrome.tabs.get.resetHistory();

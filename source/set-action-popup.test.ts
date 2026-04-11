@@ -3,7 +3,7 @@ import {
 	assert, it, beforeEach, vi,
 } from 'vitest';
 import chrome from 'sinon-chrome';
-import {setActionPopup} from './set-action-popup.js';
+import setActionPopup from './set-action-popup.js';
 
 // TODO: Extend sinon-chrome types
 // @ts-expect-error missing types

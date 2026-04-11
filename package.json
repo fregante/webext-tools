@@ -18,8 +18,9 @@
 	"license": "MIT",
 	"author": "Federico Brigante <me@fregante.com> (https://fregante.com)",
 	"type": "module",
-	"exports": "./distribution/index.js",
-	"types": "./distribution/index.d.ts",
+	"exports": {
+		"./*": "./distribution/*"
+	},
 	"scripts": {
 		"build": "tsc",
 		"demo:build": "parcel build --no-cache",

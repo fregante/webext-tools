@@ -1,6 +1,6 @@
 import {expect, it, beforeEach} from 'vitest';
 import chrome from 'sinon-chrome';
-import {getExtensionUrl} from './get-extension-url.js';
+import getExtensionUrl from './get-extension-url.js';
 
 beforeEach(() => {
 	chrome.runtime.getURL.resetHistory();

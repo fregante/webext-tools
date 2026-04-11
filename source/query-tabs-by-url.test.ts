@@ -1,7 +1,7 @@
 import assert from 'node:assert';
 import {describe, it, beforeEach} from 'vitest';
 import chrome from 'sinon-chrome';
-import {queryTabsByUrl} from './query-tabs-by-url.js';
+import queryTabsByUrl from './query-tabs-by-url.js';
 
 const mockTabs = [
 	{id: 1, url: 'https://example.com/page'},

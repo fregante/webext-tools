@@ -1,4 +1,4 @@
-import {getTabUrl} from './get-tab-url.js';
+import getTabUrl from './get-tab-url.js';
 
 export type GetPopupUrl = (
 	tabUrl: string | undefined,
@@ -15,7 +15,7 @@ async function rawSetPopup(
 	});
 }
 
-export function setActionPopup(getPopupUrl: GetPopupUrl): void {
+export default function setActionPopup(getPopupUrl: GetPopupUrl): void {
 	const setOnActiveTab = async (windowId?: number) => {
 		if (windowId === chrome.windows.WINDOW_ID_NONE) {
 			return;

@@ -8,6 +8,6 @@ async function isPromiseFulfilled(promise: Promise<unknown>): Promise<boolean> {
 	}
 }
 
-export async function doesTabExist(tabId: number): Promise<boolean> {
+export default async function doesTabExist(tabId: number): Promise<boolean> {
 	return isPromiseFulfilled(chrome.tabs.get(tabId));
 }
