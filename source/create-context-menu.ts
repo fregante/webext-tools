@@ -10,8 +10,9 @@ export type ClickListener = (
 
 function isDuplicateError(error: string): boolean {
 	return (
-		error.includes('Cannot create item with duplicate id')
-		|| error.includes('already exists in menus.create')
+		error.includes('Cannot create item with duplicate id') // Chrome
+		|| error.includes('already exists in menus.create') // Firefox
+		|| error.includes('Identifier is already used') // Safari
 	);
 }
 
