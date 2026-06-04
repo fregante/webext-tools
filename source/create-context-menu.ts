@@ -1,6 +1,7 @@
 import chromeP from 'webext-polyfill-kinda';
 
 const listeners = new Map<string | number, ClickListener>();
+let globalListenerAdded = false;
 
 export type ClickListener = (
 	data: chrome.contextMenus.OnClickData,
@@ -9,8 +10,9 @@ export type ClickListener = (
 
 function isDuplicateError(error: string): boolean {
 	return (
-		error.includes('Cannot create item with duplicate id')
-		|| error.includes('already exists in menus.create')
+		error.includes('Cannot create item with duplicate id') // Chrome
+		|| error.includes('already exists in menus.create') // Firefox
+		|| error.includes('Identifier is already used') // Safari
 	);
 }
 
@@ -51,7 +53,12 @@ export default async function createContextMenu(
 	if (onclick) {
 		// Deal with it separately because Chrome does not support the prop in service workers.
 		// Add single listener or else multiple `create` calls will register multiple listeners.
-		chrome.contextMenus.onClicked.addListener(globalListener);
+		// Safari (unlike Chrome/Firefox) does not deduplicate addListener calls, so we guard it manually.
+		if (!globalListenerAdded) {
+			chrome.contextMenus.onClicked.addListener(globalListener);
+			globalListenerAdded = true;
+		}
+
 		listeners.set(createSettings.id, onclick);
 	}
 
