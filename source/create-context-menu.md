@@ -39,6 +39,27 @@ createContextMenu({
 
 Creates a context menu.
 
+### `notifyOfMissingPermissions`
+
+This function acts as an assertion on `chrome.contextMenu` existence, alerting the developer of a misconfigured manifest.json. However it's impossible to distinguish a misconfigured extension on Firefox Android (which doesn't support context menus at all), so it will simply log a warning.
+
+`createContextMenu` already verifies whether your extension is correctly configured, but you might want to run the check earlier than `createContextMenu`. You can import this helper and use it this way:
+
+```js
+import createContextMenu, {notifyOfMissingPermissions} from 'webext-tools/create-context-menu.js';
+
+function init() {
+	if (!chrome.contextMenus) {
+		notifyOfMissingPermissions();
+		return;
+	}
+
+	yourOwnSetupBeforeCreatingTheMenu();
+
+	createContextMenu(yourConfigObject)
+}
+```
+
 #### `settings`
 
 See the native [CreateProperties](https://developer.chrome.com/docs/extensions/reference/api/contextMenus#type-CreateProperties) type, disregard the "not available" note regarding `onclick` because it works here.

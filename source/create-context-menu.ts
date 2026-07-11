@@ -16,8 +16,13 @@ function isDuplicateError(error: string): boolean {
 	);
 }
 
-/* Throws an error due to misconfiguration, unless misconfiguration can't be verified (Firefox cleans the manifest of unknown properties) */
-function warnOrThrow(): void {
+/** Throws an error due to misconfiguration, unless misconfiguration can't be verified (Firefox cleans the manifest of unknown properties) */
+export function notifyOfMissingPermissions(): void {
+	// Internal check before warning
+	if (chrome.contextMenus) {
+		return;
+	}
+
 	const manifest = chrome.runtime.getManifest();
 
 	if (
@@ -46,7 +51,7 @@ export default async function createContextMenu(
 	const {onclick, ...createSettings} = settings;
 
 	if (!chrome.contextMenus) {
-		warnOrThrow();
+		notifyOfMissingPermissions();
 		return;
 	}
 
