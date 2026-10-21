@@ -1,6 +1,6 @@
 {
 	"name": "webext-tools",
-	"version": "4.1.0",
+	"version": "4.1.1",
 	"description": "Utility functions for Web Extensions",
 	"license": "MIT",
 	"repository": "fregante/webext-tools",
