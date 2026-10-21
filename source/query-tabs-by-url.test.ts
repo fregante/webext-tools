@@ -12,7 +12,7 @@ beforeEach(() => {
 	chrome.tabs.query.resetHistory();
 	chrome.tabs.query.withArgs({url: ['https://example.com/*']}).resolves([mockTabs[0]]);
 	chrome.tabs.query.withArgs({url: ['*://*/*']}).resolves(mockTabs);
-	chrome.tabs.query.withArgs({url: ['https://no-way.example.com/*']}).resolves([mockTabs[1]]);
+	chrome.tabs.query.withArgs({url: ['http://no-way.example.com/*']}).resolves([mockTabs[1]]);
 });
 
 describe('queryTabsByUrl', () => {
@@ -52,7 +52,7 @@ describe('queryTabsByUrl', () => {
 			'It should exclude tabs with URLs matching `excludeMatches`',
 		);
 		assert.deepStrictEqual(
-			await queryTabsByUrl(['https://no-way.example.com/*'], excludeMatches),
+			await queryTabsByUrl(['http://no-way.example.com/*'], excludeMatches),
 			[],
 			'It should exclude tabs with URLs matching `excludeMatches`, even if it\'s the only match',
 		);
