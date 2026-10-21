@@ -39,8 +39,7 @@
 	],
 	"dependencies": {
 		"webext-detect": "^6.0.0",
-		"webext-patterns": "^3.0.0",
-		"webext-polyfill-kinda": "^1.0.2"
+		"webext-patterns": "^3.0.0"
 	},
 	"devDependencies": {
 		"@parcel/config-webextension": "^2.16.4",
