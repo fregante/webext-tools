@@ -23,10 +23,10 @@ export default function setActionPopup(getPopupUrl: GetPopupUrl): void {
 
 		const [tab] = await chrome.tabs.query({
 			active: true,
-			...windowId ? {windowId} : {lastFocusedWindow: true},
+			...windowId === undefined ? {lastFocusedWindow: true} : {windowId},
 		});
 
-		if (!tab?.id) {
+		if (tab?.id === undefined) {
 			return;
 		}
 
@@ -36,15 +36,17 @@ export default function setActionPopup(getPopupUrl: GetPopupUrl): void {
 	// TODO: Probably just call on extension enabled
 	void setOnActiveTab();
 
-	chrome.windows.onFocusChanged.addListener(setOnActiveTab);
-
-	chrome.tabs.onActivated.addListener(async activeInfo => {
-		await rawSetPopup(getPopupUrl, activeInfo.tabId);
+	chrome.windows.onFocusChanged.addListener(windowId => {
+		void setOnActiveTab(windowId);
 	});
 
-	chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
-		if (tab.active && changeInfo.url) {
-			await rawSetPopup(getPopupUrl, tabId, changeInfo.url);
+	chrome.tabs.onActivated.addListener(activeInfo => {
+		void rawSetPopup(getPopupUrl, activeInfo.tabId);
+	});
+
+	chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+		if (tab.active && changeInfo.url !== undefined) {
+			void rawSetPopup(getPopupUrl, tabId, changeInfo.url);
 		}
 	});
 }

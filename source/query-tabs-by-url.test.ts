@@ -17,17 +17,17 @@ beforeEach(() => {
 
 describe('queryTabsByUrl', () => {
 	it('should handle the matches array', async () => {
-		assert.deepEqual(
+		assert.deepStrictEqual(
 			await queryTabsByUrl([]),
 			[],
 			'No patterns means no tabs',
 		);
-		assert.deepEqual(
+		assert.deepStrictEqual(
 			await queryTabsByUrl(['https://example.com/*']),
 			[1],
 			'It should pass the query to chrome.tabs',
 		);
-		assert.deepEqual(
+		assert.deepStrictEqual(
 			await queryTabsByUrl(['*://*/*']),
 			[1, 2],
 			'It should pass the query to chrome.tabs',
@@ -36,22 +36,22 @@ describe('queryTabsByUrl', () => {
 
 	it('should handle the `excludeMatches` array', async () => {
 		const excludeMatches = ['http://*/*'];
-		assert.deepEqual(
+		assert.deepStrictEqual(
 			await queryTabsByUrl([], excludeMatches),
 			[],
 			'No patterns means no tabs',
 		);
-		assert.deepEqual(
+		assert.deepStrictEqual(
 			await queryTabsByUrl(['https://example.com/*'], excludeMatches),
 			[1],
 			'It should pass the query to chrome.tabs',
 		);
-		assert.deepEqual(
+		assert.deepStrictEqual(
 			await queryTabsByUrl(['*://*/*'], excludeMatches),
 			[1],
 			'It should exclude tabs with URLs matching `excludeMatches`',
 		);
-		assert.deepEqual(
+		assert.deepStrictEqual(
 			await queryTabsByUrl(['http://no-way.example.com/*'], excludeMatches),
 			[],
 			'It should exclude tabs with URLs matching `excludeMatches`, even if it\'s the only match',

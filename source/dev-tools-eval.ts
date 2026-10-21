@@ -1,13 +1,15 @@
 function printf(template: string, arguments_: string[]): string {
 	// eslint-disable-next-line unicorn/no-array-reduce -- Short and already described by "printf"
 	return arguments_.reduce(
-		(message, part) => message.replace('%s', part),
+		(message, part) => message.replace('%s', () => part),
 		template,
 	);
 }
 
-/** Wrapper around the dev tools' `eval` function to throw proper errors */
-// eslint-disable-next-line unicorn/prevent-abbreviations
+/**
+Wrapper around the dev tools' `eval` function to throw proper errors
+*/
+
 export default async function devToolsEval<T>(code: string): Promise<T> {
 	return new Promise<T>((resolve, reject) => {
 		chrome.devtools.inspectedWindow.eval<T>(code, (response, error) => {
@@ -19,7 +21,7 @@ export default async function devToolsEval<T>(code: string): Promise<T> {
 				return;
 			}
 
-			resolve(response);
+			resolve(response as T);
 		});
 	});
 }

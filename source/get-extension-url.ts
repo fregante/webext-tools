@@ -11,7 +11,7 @@ export default function getExtensionUrl<T extends string>(
 ): URL {
 	const url = new URL(chrome.runtime.getURL(pathname));
 
-	if (options?.hash) {
+	if (options?.hash !== undefined) {
 		url.hash = options.hash;
 	}
 

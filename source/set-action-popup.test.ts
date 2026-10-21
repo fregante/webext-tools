@@ -1,6 +1,9 @@
 import {setTimeout} from 'node:timers/promises';
 import {
-	assert, it, beforeEach, vi,
+	assert,
+	it,
+	beforeEach,
+	vi,
 } from 'vitest';
 import chrome from 'sinon-chrome';
 import setActionPopup from './set-action-popup.js';
@@ -11,7 +14,7 @@ chrome.action = chrome.browserAction;
 
 beforeEach(() => {
 	// @ts-expect-error missing types
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+
 	chrome.action.setPopup.flush();
 	chrome.windows.onFocusChanged.removeListeners();
 	chrome.tabs.onActivated.removeListeners();
