@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"rootDir": "./source",
 		"outDir": "./distribution",
+		"types": ["chrome", "node"],
 	},
 	"include": [
 		"source",

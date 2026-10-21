@@ -1,4 +1,6 @@
-/** Utility to await promises where you only care whether they throw or not */
+/**
+Utility to await promises where you only care whether they throw or not
+*/
 async function isPromiseFulfilled(promise: Promise<unknown>): Promise<boolean> {
 	try {
 		await promise;

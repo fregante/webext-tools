@@ -15,19 +15,16 @@ const noError: Record<string, unknown> = {
 };
 
 beforeEach(() => {
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 	evalStub.resetHistory();
 });
 
 it('returns the result of a successful eval', async () => {
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 	evalStub.yields('result', noError);
 
 	await expect(devToolsEval('1 + 1')).resolves.toBe('result');
 });
 
 it('throws on a DevTools-side error with printf substitution', async () => {
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 	evalStub.yields(undefined, {
 		isError: true,
 		code: 'E_SOME_ERROR',
@@ -41,7 +38,6 @@ it('throws on a DevTools-side error with printf substitution', async () => {
 });
 
 it('resolves with a non-string result', async () => {
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 	evalStub.yields(42, noError);
 
 	await expect(devToolsEval<number>('42')).resolves.toBe(42);

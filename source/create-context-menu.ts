@@ -1,7 +1,7 @@
 import chromeP from 'webext-polyfill-kinda';
 
 const listeners = new Map<string | number, ClickListener>();
-let globalListenerAdded = false;
+let isGlobalListenerAdded = false;
 
 export type ClickListener = (
 	data: chrome.contextMenus.OnClickData,
@@ -16,10 +16,12 @@ function isDuplicateError(error: string): boolean {
 	);
 }
 
-/** Throws an error due to misconfiguration, unless misconfiguration can't be verified (Firefox cleans the manifest of unknown properties) */
+/**
+Throws an error due to misconfiguration, unless misconfiguration can't be verified (Firefox cleans the manifest of unknown properties)
+*/
 export function notifyOfMissingPermissions(): void {
 	// Internal check before warning
-	if (chrome.contextMenus) {
+	if (chrome.contextMenus !== undefined) {
 		return;
 	}
 
@@ -28,7 +30,7 @@ export function notifyOfMissingPermissions(): void {
 	if (
 		!manifest.permissions?.includes('contextMenus')
 		// Disable setup error on Firefox Android
-		&& !/Android.+Firefox\//.test(navigator.userAgent)
+		&& !/Android.+Firefox\//v.test(navigator.userAgent)
 	) {
 		throw new Error('webext-permission-toggle requires the `contextMenus` permission');
 	}
@@ -48,23 +50,23 @@ export default async function createContextMenu(
 		id: string;
 		contexts?: Array<`${chrome.contextMenus.ContextType}`>;
 	}): Promise<void> {
-	const {onclick, ...createSettings} = settings;
+	const {onclick, ...menuSettings} = settings;
 
-	if (!chrome.contextMenus) {
+	if (chrome.contextMenus === undefined) {
 		notifyOfMissingPermissions();
 		return;
 	}
 
-	if (onclick) {
+	if (onclick !== undefined) {
 		// Deal with it separately because Chrome does not support the prop in service workers.
 		// Add single listener or else multiple `create` calls will register multiple listeners.
 		// Safari (unlike Chrome/Firefox) does not deduplicate addListener calls, so we guard it manually.
-		if (!globalListenerAdded) {
+		if (!isGlobalListenerAdded) {
 			chrome.contextMenus.onClicked.addListener(globalListener);
-			globalListenerAdded = true;
+			isGlobalListenerAdded = true;
 		}
 
-		listeners.set(createSettings.id, onclick);
+		listeners.set(menuSettings.id, onclick);
 	}
 
 	// Don't "remove+create" because this will re-order the items, if other items don't use the same mechanism.
@@ -75,10 +77,12 @@ export default async function createContextMenu(
 	// If it doesn't exist:
 	// - `update` fails (only in Chrome) and the error is ignored
 	// - `create` works
-	const {id, ...updateSettings} = createSettings;
+	const {id, ...updateSettings} = menuSettings;
+
 	const [, creation] = await Promise.allSettled([
-		chromeP.contextMenus.update(id, updateSettings),
-		chromeP.contextMenus.create(createSettings),
+		chromeP.contextMenus.update(id, updateSettings as Omit<chrome.contextMenus.CreateProperties, 'id'>),
+		// eslint-disable-next-line @typescript-eslint/await-thenable -- `webext-polyfill-kinda` types don't reflect the promise
+		chromeP.contextMenus.create(menuSettings as chrome.contextMenus.CreateProperties),
 	]);
 
 	if (

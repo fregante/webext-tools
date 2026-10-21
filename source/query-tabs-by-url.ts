@@ -9,6 +9,6 @@ export default async function queryTabsByUrl(matches: string[], excludeMatches?:
 
 	const tabs = await chrome.tabs.query({url: matches});
 	return tabs
-		.filter(tab => tab.id && tab.url && (exclude ? !exclude.test(tab.url) : true))
+		.filter(tab => tab.id !== undefined && tab.url !== undefined && (!exclude?.test(tab.url)))
 		.map(tab => tab.id!);
 }
