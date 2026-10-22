@@ -1,5 +1,3 @@
-import chromeP from 'webext-polyfill-kinda';
-
 const listeners = new Map<string | number, ClickListener>();
 let isGlobalListenerAdded = false;
 
@@ -7,6 +5,19 @@ export type ClickListener = (
 	data: chrome.contextMenus.OnClickData,
 	tab: chrome.tabs.Tab,
 ) => void;
+
+// `create` returns the id synchronously and reports errors via callback only
+async function create(properties: chrome.contextMenus.CreateProperties): Promise<void> {
+	return new Promise((resolve, reject) => {
+		chrome.contextMenus.create(properties, () => {
+			if (chrome.runtime.lastError) {
+				reject(new Error(chrome.runtime.lastError.message));
+			} else {
+				resolve();
+			}
+		});
+	});
+}
 
 function isDuplicateError(error: string): boolean {
 	return (
@@ -80,9 +91,8 @@ export default async function createContextMenu(
 	const {id, ...updateSettings} = menuSettings;
 
 	const [, creation] = await Promise.allSettled([
-		chromeP.contextMenus.update(id, updateSettings as Omit<chrome.contextMenus.CreateProperties, 'id'>),
-		// eslint-disable-next-line @typescript-eslint/await-thenable -- `webext-polyfill-kinda` types don't reflect the promise
-		chromeP.contextMenus.create(menuSettings as chrome.contextMenus.CreateProperties),
+		chrome.contextMenus.update(id, updateSettings as Omit<chrome.contextMenus.CreateProperties, 'id'>),
+		create(menuSettings as chrome.contextMenus.CreateProperties),
 	]);
 
 	if (
