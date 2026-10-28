@@ -43,4 +43,4 @@ jobs:
         with:
           node-version-file: package.json
       - run: npm ci
-      - run: npx vitest
+      - run: npm run test:unit

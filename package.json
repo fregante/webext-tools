@@ -19,7 +19,8 @@
 		"demo:build": "parcel build --no-cache",
 		"demo:watch": "parcel watch --no-cache --no-hmr",
 		"prepack": "tsc --sourceMap false",
-		"test": "tsc && xo && node --import ./test-setup.js --test \"distribution/*.test.js\" && npm run demo:build",
+		"test": "xo && npm run test:unit && npm run demo:build",
+		"test:unit": "tsc && node --import ./test-setup.js --test \"distribution/*.test.js\"",
 		"watch": "tsc --watch"
 	},
 	"files": [
