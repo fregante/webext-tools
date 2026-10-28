@@ -12,6 +12,7 @@ chrome.action.onClicked.addListener(({openerTabId}) => {
 	void chrome.tabs.create({url: 'https://example.com', openerTabId});
 });
 
+// eslint-disable-next-line unicorn/prefer-top-level-await -- I don't think it's possible
 (async () => {
 	await createContextMenu({
 		id: 'example-context-menu',

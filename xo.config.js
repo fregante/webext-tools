@@ -1,5 +1,3 @@
-import globals from 'globals';
-
 /**
 @type {import('xo').FlatXoConfig}
 */
@@ -15,22 +13,10 @@ const xoConfig = [
 			'@typescript-eslint/no-unsafe-call': 'off',
 			'@typescript-eslint/strict-void-return': 'off',
 			// `node:test` registers tests synchronously and returns promises
+			// TODO: Drop in 2027
 			'@typescript-eslint/no-floating-promises': 'off',
 			// Tests need to cover `http:` URLs
 			'unicorn/prefer-https': 'off',
-		},
-	},
-	{
-		languageOptions: {
-			globals: {
-				...globals.browser,
-				chrome: 'readonly',
-			},
-		},
-		rules: {
-			'unicorn/prefer-top-level-await': 'off',
-			'regexp/no-useless-character-class': 'off',
-			'unicorn/prefer-string-replace-all': 'off',
 		},
 	},
 ];
