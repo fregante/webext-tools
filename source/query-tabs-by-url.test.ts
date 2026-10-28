@@ -1,5 +1,5 @@
-import assert from 'node:assert';
-import {describe, it, beforeEach} from 'vitest';
+import assert from 'node:assert/strict';
+import {describe, it, beforeEach} from 'node:test';
 import chrome from 'sinon-chrome';
 import queryTabsByUrl from './query-tabs-by-url.js';
 

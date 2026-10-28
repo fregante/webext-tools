@@ -1,4 +1,5 @@
-import {expect, it, beforeEach} from 'vitest';
+import assert from 'node:assert/strict';
+import {it, beforeEach} from 'node:test';
 import chrome from 'sinon-chrome';
 import devToolsEval from './dev-tools-eval.js';
 
@@ -21,7 +22,7 @@ beforeEach(() => {
 it('returns the result of a successful eval', async () => {
 	evalStub.yields('result', noError);
 
-	await expect(devToolsEval('1 + 1')).resolves.toBe('result');
+	assert.equal(await devToolsEval('1 + 1'), 'result');
 });
 
 it('throws on a DevTools-side error with printf substitution', async () => {
@@ -34,11 +35,11 @@ it('throws on a DevTools-side error with printf substitution', async () => {
 		value: '',
 	});
 
-	await expect(devToolsEval('bad')).rejects.toThrow('Error: bad input');
+	await assert.rejects(devToolsEval('bad'), {message: 'Error: bad input'});
 });
 
 it('resolves with a non-string result', async () => {
 	evalStub.yields(42, noError);
 
-	await expect(devToolsEval<number>('42')).resolves.toBe(42);
+	assert.equal(await devToolsEval<number>('42'), 42);
 });

@@ -19,8 +19,7 @@
 		"demo:build": "parcel build --no-cache",
 		"demo:watch": "parcel watch --no-cache --no-hmr",
 		"prepack": "tsc --sourceMap false",
-		"test": "tsc --noEmit && xo && vitest run && npm run demo:build",
-		"test:watch": "vitest",
+		"test": "tsc && xo && node --import ./test-setup.js --test \"distribution/*.test.js\" && npm run demo:build",
 		"watch": "tsc --watch"
 	},
 	"files": [
@@ -51,7 +50,6 @@
 		"parcel": "^2.16.4",
 		"sinon-chrome": "^3.0.1",
 		"typescript": "^6.0.3",
-		"vitest": "^5.0.5",
 		"xo": "^5.0.1"
 	},
 	"targets": {

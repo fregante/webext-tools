@@ -14,6 +14,8 @@ const xoConfig = [
 			'@typescript-eslint/no-unsafe-member-access': 'off',
 			'@typescript-eslint/no-unsafe-call': 'off',
 			'@typescript-eslint/strict-void-return': 'off',
+			// `node:test` registers tests synchronously and returns promises
+			'@typescript-eslint/no-floating-promises': 'off',
 			// Tests need to cover `http:` URLs
 			'unicorn/prefer-https': 'off',
 		},
