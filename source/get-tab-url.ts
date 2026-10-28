@@ -1,4 +1,4 @@
-import castTarget, {type Target} from './target.js';
+import castTarget, {type Target} from './target.ts';
 
 export default async function getTabUrl(
 	target: number | Target,
@@ -14,7 +14,7 @@ export default async function getTabUrl(
 
 		const [result] = await chrome.scripting.executeScript({
 			target: {tabId, frameIds: [frameId]},
-			func: () => location.href,
+			func: () => globalThis.location.href,
 		});
 		return result?.result;
 	} catch {

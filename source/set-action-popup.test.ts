@@ -1,12 +1,7 @@
 import {setTimeout} from 'node:timers/promises';
-import {
-	assert,
-	it,
-	beforeEach,
-	vi,
-} from 'vitest';
+import {it, beforeEach, type TestContext} from 'node:test';
 import chrome from 'sinon-chrome';
-import setActionPopup from './set-action-popup.js';
+import setActionPopup from './set-action-popup.ts';
 
 // TODO: Extend sinon-chrome types
 // @ts-expect-error missing types
@@ -21,8 +16,8 @@ beforeEach(() => {
 	chrome.tabs.onUpdated.removeListeners();
 });
 
-it('sets the popup on the active tab', async () => {
-	const getPopupUrl = vi.fn().mockReturnValue('https://example.com');
+it('sets the popup on the active tab', async (t: TestContext) => {
+	const getPopupUrl = t.mock.fn(() => 'https://example.com');
 
 	chrome.tabs.query.withArgs({
 		active: true,
@@ -35,13 +30,13 @@ it('sets the popup on the active tab', async () => {
 	setActionPopup(getPopupUrl);
 
 	// @ts-expect-error missing types
-	assert.equal(chrome.action.setPopup.notCalled, true);
+	t.assert.strictEqual(chrome.action.setPopup.notCalled, true);
 
 	chrome.tabs.onActivated.trigger({tabId: 100});
 
 	await setTimeout(1);
 
-	assert.equal(chrome.tabs.query.calledOnce, true);
+	t.assert.strictEqual(chrome.tabs.query.calledOnce, true);
 
 	// TODO: Add more tests for the listeners
 });

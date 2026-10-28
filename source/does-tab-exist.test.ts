@@ -1,6 +1,7 @@
-import {expect, it, beforeEach} from 'vitest';
+import assert from 'node:assert/strict';
+import {it, beforeEach} from 'node:test';
 import chrome from 'sinon-chrome';
-import doesTabExist from './does-tab-exist.js';
+import doesTabExist from './does-tab-exist.ts';
 
 beforeEach(() => {
 	chrome.tabs.get.resetHistory();
@@ -9,11 +10,11 @@ beforeEach(() => {
 it('returns true if the tab exists', async () => {
 	chrome.tabs.get.withArgs(0).resolves({});
 
-	await expect(doesTabExist(0)).resolves.toBe(true);
+	assert.equal(await doesTabExist(0), true);
 });
 
 it('returns false if the tab doesn’t exist', async () => {
 	chrome.tabs.get.withArgs(0).rejects(new Error('Tab not found'));
 
-	await expect(doesTabExist(0)).resolves.toBe(false);
+	assert.equal(await doesTabExist(0), false);
 });
