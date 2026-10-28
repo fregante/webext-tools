@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import {it, beforeEach} from 'node:test';
 import chrome from 'sinon-chrome';
-import getTabUrl from './get-tab-url.js';
+import getTabUrl from './get-tab-url.ts';
 
 beforeEach(() => {
 	chrome.tabs.get.resetHistory();

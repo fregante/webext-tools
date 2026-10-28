@@ -1,7 +1,7 @@
 import {setTimeout} from 'node:timers/promises';
 import {it, beforeEach, type TestContext} from 'node:test';
 import chrome from 'sinon-chrome';
-import setActionPopup from './set-action-popup.js';
+import setActionPopup from './set-action-popup.ts';
 
 // TODO: Extend sinon-chrome types
 // @ts-expect-error missing types

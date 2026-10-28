@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {it, beforeEach} from 'node:test';
 import chrome from 'sinon-chrome';
-import doesTabExist from './does-tab-exist.js';
+import doesTabExist from './does-tab-exist.ts';
 
 beforeEach(() => {
 	chrome.tabs.get.resetHistory();

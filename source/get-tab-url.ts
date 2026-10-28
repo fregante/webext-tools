@@ -1,4 +1,4 @@
-import castTarget, {type Target} from './target.js';
+import castTarget, {type Target} from './target.ts';
 
 export default async function getTabUrl(
 	target: number | Target,

@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"rootDir": "./source",
 		"outDir": "./distribution",
+		"rewriteRelativeImportExtensions": true,
 		"types": ["chrome", "node"],
 	},
 	"include": [

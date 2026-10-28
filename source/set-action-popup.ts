@@ -1,4 +1,4 @@
-import getTabUrl from './get-tab-url.js';
+import getTabUrl from './get-tab-url.ts';
 
 export type GetPopupUrl = (
 	tabUrl: string | undefined,

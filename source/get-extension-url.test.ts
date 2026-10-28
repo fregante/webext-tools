@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {it, beforeEach} from 'node:test';
 import chrome from 'sinon-chrome';
-import getExtensionUrl from './get-extension-url.js';
+import getExtensionUrl from './get-extension-url.ts';
 
 beforeEach(() => {
 	chrome.runtime.getURL.resetHistory();

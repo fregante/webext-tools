@@ -20,7 +20,7 @@
 		"demo:watch": "parcel watch --no-cache --no-hmr",
 		"prepack": "tsc --sourceMap false",
 		"test": "xo && npm run test:unit && npm run demo:build",
-		"test:unit": "tsc && node --import ./test-setup.js --test \"distribution/*.test.js\"",
+		"test:unit": "tsc --noEmit && node --import ./setup-tests.js --test",
 		"watch": "tsc --watch"
 	},
 	"files": [
